@@ -1,0 +1,20 @@
+.height-auto {
+    height: auto;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.txt-trans-initial {
+    text-transform: initial;
+}
+
+/* Multiple Select */
+.ms-container {
+    width: auto !important;
+}
+
+.label, .jvectormap-tip {
+    padding: 5px 5px 5px !important;
+}
