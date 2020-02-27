@@ -13,7 +13,7 @@
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
                 <li>
-                    <a style="opacity: 1;" class="text-primary font-bold" href="{{ route('adm.groups.new') }}">Novo usuário</a>
+                    <a style="opacity: 1;" class="text-primary font-bold" href="{{ route('adm.groups.new') }}">Novo grupo</a>
                 </li>
             </ol>
         </div>

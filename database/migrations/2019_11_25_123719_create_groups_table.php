@@ -15,8 +15,11 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->bigIncrements('id');
+
+            $table->integer('hierarchy_level')->nullable()->unique();
             $table->string('name');
-            $table->string('tag_color')->nullable();
+            $table->string('tag', 30)->nullable();
+            $table->string('tag_color', 20)->nullable();
             
             $table->timestamps();
             $table->softDeletes();

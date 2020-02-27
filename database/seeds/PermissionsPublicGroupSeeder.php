@@ -2,6 +2,10 @@
 
 use Illuminate\Database\Seeder;
 
+use App\Models\Admin\CreatedPermission;
+use App\Models\Admin\Group;
+use App\Models\Admin\Permission;
+
 class PermissionsPublicGroupSeeder extends Seeder
 {
     /**
@@ -11,14 +15,17 @@ class PermissionsPublicGroupSeeder extends Seeder
      */
     public function run()
     {
-        $created_permission = CreatedPermission::where('route', 'adm.index')->first();
-        $dev_group = Group::find(2);
+        $public_group = Group::find(2);
+        $data['group_id'] = $public_group->id;
 
-        $n = 0;
-        $data['group_id'] = $dev_group->id;
-        $data['created_permission_id'] = $created_permission->id;
-
-        Permission::create($data);
-        echo ++$n . " - Permissão adicionada ao grupo Public";
+        if ($public_group->Permission->count() == 0) {
+            $adm_index_permission = CreatedPermission::where('route', 'adm.index')->first();
+            $data['created_permission_id'] = $adm_index_permission->id;
+            
+            Permission::create($data);
+            echo "Permissão adicionada ao grupo Public";
+        } else {
+            echo "O grupo Public já possuí permissão";
+        }
     }
 }

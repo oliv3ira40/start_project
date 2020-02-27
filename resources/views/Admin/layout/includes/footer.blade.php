@@ -1,14 +1,28 @@
         </div>
 			
-        <!-- Footer -->
         <footer class="footer container-fluid pl-30 pr-30">
             <div class="row">
                 <div class="col-sm-12">
-                    <p>2018 &copy; Droopy. Pampered by Hencework</p>
+                    <p>Projeto Web: Agência L.A.* Web</p>
                 </div>
             </div>
         </footer>
-        <!-- /Footer -->
+        
+        @php
+            $flash = session()->all();
+            
+            $notification = null;
+            if (isset($flash['notification'])) {
+                $notification = HelpAdmin::prepareNotification($flash['notification']);
+            }
+        @endphp
+        
+        @if ($notification != null)
+            @section('type', $notification['type'])
+            @section('msg', $notification['msg'])
+        @endif
+
+        <div style="display: none;" id="config_notifications" data-type="@yield('type')">@yield('msg')</div>
 
     </div>
 <!-- /Main Content -->
@@ -90,14 +104,18 @@
 <!-- Form Advance Init JavaScript -->
 <script src="{{ asset('admin_theme/theme/dist/js/form-advance-data.js') }}"></script>
 
-<!-- Bootstrap Datetimepicker JavaScript -->
-<script type="text/javascript" src="{{ asset('admin_theme/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
-
 <!-- Bootstrap Daterangepicker JavaScript -->
 <script src="{{ asset('admin_theme/vendors/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
 <!-- Form Picker Init JavaScript -->
 <script src="{{ asset('admin_theme/theme/dist/js/form-picker-data.js') }}"></script>
+
+<!-- Fancy Dropdown JS -->
+<script src="{{ asset('admin_theme/theme/dist/js/dropdown-bootstrap-extended.js') }}"></script>
+
+{{-- JQUERY-MASK --}}
+<script src="{{ asset('plugins/jquery-mask-plugin/dist/jquery.mask.js') }}"></script>
+<script src="{{ asset('js/utilities/masks.js') }}"></script>
 
 <!-- Init JavaScript -->
 <script src="{{ asset('admin_theme/theme/dist/js/init.js') }}"></script>
@@ -106,6 +124,17 @@
 <!-- Data table JavaScript -->
 <script src="{{ asset('admin_theme/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('admin_theme/theme/dist/js/dataTables-data.js') }}"></script>
+
+<!-- Gallery JavaScript -->
+<script src="{{ asset('admin_theme/theme/dist/js/isotope.js') }}"></script>
+<script src="{{ asset('admin_theme/theme/dist/js/lightgallery-all.js') }}"></script>
+<script src="{{ asset('admin_theme/theme/dist/js/froogaloop2.min.js') }}"></script>
+<script src="{{ asset('admin_theme/theme/dist/js/gallery-data.js') }}"></script>
+
+{{-- My --}}
+<script src="{{ asset('js/notifications.js') }}"></script>
+<script src="{{ asset('js/date_picker.js') }}"></script>
+<script src="{{ asset('js/calleds/reports/interactions.js') }}"></script>
 
 </body>
 

@@ -19,7 +19,7 @@ class DevUserSeeder extends Seeder
 			'last_name'=>'Cesar',
 			'email'=>'oliv3ira40@hotmail.com',
 			'cpf'=>'11869530470',
-			'password'=>bcrypt('xgppa007')
+			'password'=>bcrypt('akgk400blk')
 		];
 		if (User::where('email', '=', $data['email'])->count()) {
 			$user = User::where('email', '=', $data['email'])->first();

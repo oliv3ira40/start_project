@@ -26,10 +26,15 @@
                             {!! Form::open(['url'=>route('adm.created_permissions.save')]) !!}
                                 <div class="form-group">
                                     <label for="textarea" class="control-label mb-10 text-left">
-                                        Permissões
+                                        Permissões*
                                         <small>Ex: nome1=rota1/nome2=rota2</small>
+                                        @if ($errors->has('textarea'))
+                                            <small class="txt-danger txt-trans-initial font-bold">
+                                                {{ $errors->first('textarea') }}
+                                            </small>
+                                        @endif
                                     </label>
-                                    {!! Form::textarea('textarea', null, ['class'=>'form-control', 'id'=>'textarea', 'rows'=>'5', 'required'=>'true']) !!}
+                                    {!! Form::textarea('textarea', null, ['class'=>'form-control', 'id'=>'textarea', 'rows'=>'5']) !!}
                                 </div>
                                 <div class="form-group mb-10">
                                     <div class="checkbox checkbox-primary">

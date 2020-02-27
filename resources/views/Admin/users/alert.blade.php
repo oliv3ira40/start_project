@@ -1,5 +1,5 @@
 @extends('Admin.layout.layout')
-@section('title', 'Excluindo usuário')
+@section('title', 'Bloqueando usuário')
 
 @section('content')
 
@@ -16,7 +16,8 @@
             <div class="panel panel-default card-view">
                 <div class="panel-heading">
                     <div class="pull-left">
-                        <h6 class="panel-title txt-dark">Excluindo usuário</h6>
+                        <h6 class="panel-title txt-dark">Bloqueando usuário</h6>
+                        <small class="font-bold pl-0">Este usuário não terá acesso ao sistema</small>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -46,7 +47,7 @@
                                 </div>
 
                                 <div class="form-group col-md-12 mb-0">
-                                    {!! Form::submit('Excluir', ['class'=>'btn btn-xs btn-block btn-danger']) !!}
+                                    {!! Form::submit('Bloquear', ['class'=>'btn btn-xs btn-block btn-danger']) !!}
                                 </div>
                             {!! Form::close() !!}
                         </div>

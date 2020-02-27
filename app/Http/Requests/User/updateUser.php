@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\admin;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 use App\Models\Admin\User;
+
 
 class updateUser extends FormRequest
 {
@@ -29,21 +30,21 @@ class updateUser extends FormRequest
         $this->cpf = str_replace(['.', '-'], '', $this->cpf);
 
         return [
-            'first_name'=> 'bail|required|string',
-            'last_name'=> '',
-            'email'=> ($editable_user->email == $this->email) ? 'bail|required|email' : 'bail|required|email|unique:users',
-            'cpf'=> ($editable_user->cpf == $this->cpf) ? 'bail|nullable|numeric' : 'bail|nullable|numeric|unique:users',
-            'password'=> 'bail|nullable|min:5|confirmed',
-            'group_id'=> 'required',
+            'first_name'    =>  'bail|required|string',
+            'last_name'     =>  '',
+            'email'         =>  ($editable_user->email == $this->email) ? 'bail|required|email' : 'bail|required|email|unique:users',
+            'telephone'     =>  'bail|nullable|max:20',
+            'password'      =>  'bail|nullable|min:5|confirmed',
+            'login'         =>  'nullable',
+            'group_id'      =>  'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'cpf.numeric'=> 'Apenas números neste campo',
-            'email.unique'=> 'Este E-MAIL já esta sendo utilizado',
-            'cpf.unique'=> 'Este CPF já esta sendo utilizado'
+            'email.unique'      =>  'Este E-MAIL já esta sendo utilizado',
+            'telephone.numeric' =>  'Somente números neste campo'
         ];
     }
 }

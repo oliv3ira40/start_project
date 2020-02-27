@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Admin\CreatedPermission;
+use App\Http\Requests\CreatedPermission\newPermission;
+use App\Http\Requests\CreatedPermission\updatePermission;
 
 class CreatedPermissionController extends Controller
 {
@@ -27,7 +29,7 @@ class CreatedPermissionController extends Controller
     {
         return view('Admin.created_permissions.new');
     }
-    public function save(Request $req)
+    public function save(newPermission $req)
     {
         $data = $req->all();
 
@@ -55,7 +57,7 @@ class CreatedPermissionController extends Controller
     
         return view('Admin.created_permissions.edit', compact('permission'));
     }
-    public function update(Request $req)
+    public function update(updatePermission $req)
     {
         $data = $req->all();
         $permission = CreatedPermission::find($data['id']);

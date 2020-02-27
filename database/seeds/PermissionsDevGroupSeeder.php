@@ -15,16 +15,17 @@ class PermissionsDevGroupSeeder extends Seeder
      */
     public function run()
     {
-        $created_permissions = CreatedPermission::all();
         $dev_group = Group::find(1);
-
-        $n = 0;
         $data['group_id'] = $dev_group->id;
-        foreach ($created_permissions as $key => $permission) {
-            $data['created_permission_id'] = $permission->id;
+
+        if ($dev_group->Permission->count() == 0) {
+            $developer_permission = CreatedPermission::where('route', 'developer')->first();
+            $data['created_permission_id'] = $developer_permission->id;
             
             Permission::create($data);
-            echo ++$n . " - Permissão adicionada ao grupo Desenvolvedor";
+            echo "Permissão adicionada ao grupo Desenvolvedor";
+        } else {
+            echo "O grupo Desenvolvedor já possuí permissão";
         }
     }
 }

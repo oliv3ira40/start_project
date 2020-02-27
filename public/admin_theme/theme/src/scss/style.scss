@@ -103,7 +103,7 @@ $dark_green:#558B2F;
 $seagreen:#007153;
 $yellow:#f8b32d;
 $red:#f33923;
-$blue:#2196F3;
+$blue:#074d8c;
 $skyblue:#00a5d1;
 $lightblue:#57bce1;
 $navytblue:#322e56;
@@ -5919,13 +5919,7 @@ a.compose-mail {
 		}
 	}
 }
-.pagination > .disabled > a, .pagination > .disabled > a:focus, .pagination > .disabled > a:hover, .pagination > .disabled > span, .pagination > .disabled > span:focus, .pagination > .disabled > span:hover {
-	border-color:$light_grey;
-	color:$green;
-}
-.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
-	color:$grey;
-}
+
 /*Pager*/
 .pager li > a, .pager li > span {
     border: 1px solid $light_grey;

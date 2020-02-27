@@ -177,6 +177,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // Audit service provider
+        OwenIt\Auditing\AuditingServiceProvider::class,
+
     ],
 
     /*
@@ -231,8 +234,9 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
     
-        'HelpMenuAdmin' => App\Helpers\HelpMenuAdmin::class,
         'HelpAdmin' => App\Helpers\HelpAdmin::class,
+        'HelpMenuAdmin' => App\Helpers\HelpMenuAdmin::class,
+        'HelpCalled' => App\Helpers\HelpCalled::class,
     ],
 
 ];

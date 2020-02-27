@@ -87,6 +87,10 @@ class CreatedPermissionsSeeder extends Seeder
                 'route'=>'adm.users.delete',
             ],
             [
+                'name'=>'Editar grupo - Usuários',
+                'route'=>'adm.users.edit_group',
+            ],
+            [
                 'name'=>'Alerta de exclusão - Permissões criadas',
                 'route'=>'adm.created_permissions.alert',
             ],

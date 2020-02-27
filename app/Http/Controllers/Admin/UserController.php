@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\HelpAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\Admin\newUser;
-use App\Http\Requests\Admin\updateUser;
+use App\Http\Requests\User\newUser;
+use App\Http\Requests\User\updateUser;
 
 use App\Models\Admin\User;
 use App\Models\Admin\Group;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class UserController extends Controller
 {
@@ -22,7 +24,9 @@ class UserController extends Controller
 
     public function list()
     {
-        $users = User::all();
+        $developer_group = Group::where('tag', 'developer')->first();
+        $users = User::select('id', 'first_name', 'last_name', 'email', 'created_at', 'deleted_at', 'group_id')
+            ->orderBy('created_at', 'desc')->withTrashed()->get();
 
         return view('Admin.users.list', compact('users'));
     }
@@ -30,6 +34,11 @@ class UserController extends Controller
     public function new()
     {
         $groups = Group::orderBy('created_at', 'desc')->get();
+        $developer_group = Group::where('tag', 'developer')->first();
+        
+        if (!HelpAdmin::IsUserDeveloper()) {
+            $groups = $groups->where('id', '!=', $developer_group->id);
+        }
 
         return view('Admin.users.new', compact('groups'));
     }
@@ -37,7 +46,7 @@ class UserController extends Controller
     {
         $data = $req->all();
         $data['password'] = bcrypt($data['password']);
-
+        
         User::create($data);
 
         if (isset($data['stay_on_page']) AND $data['stay_on_page'] == 'on')
@@ -51,8 +60,32 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $developer_group = Group::where('tag', 'developer')->first();
+        $auth_user = \Auth::User();
+        
         $user = User::find($id);
+        if ($user == null) 
+        {
+            session()->flash('notification', 'error:Este usuário não está mais disponível');
+            return redirect()->route('adm.index');
+        }
+
+        if (HelpAdmin::IsUserDeveloper($user) AND
+            !HelpAdmin::IsUserDeveloper()) {
+            return redirect()->route('adm.withoutPermission');
+        }
+        
+        if ($auth_user->id != $user->id
+        AND !in_array('adm.users.edit_other_users', HelpAdmin::permissionsUser($auth_user)))
+        {
+            return redirect()->route('adm.withoutPermission');
+        }
+
         $groups = Group::orderBy('created_at', 'desc')->get();
+        if (!HelpAdmin::IsUserDeveloper())
+        {
+            $groups = $groups->where('id', '!=', $developer_group->id);
+        }
 
         return view('Admin.users.edit', compact('user', 'groups'));
     }
@@ -67,14 +100,18 @@ class UserController extends Controller
             unset($data['password']);
         }
 
-        $user->update($data);
-
         if (isset($data['stay_on_page']) AND $data['stay_on_page'] == 'on')
         {
             return redirect()->route('adm.users.edit', $user->id);
         } else
         {
-            return redirect()->route('adm.users.list');
+            if (in_array('adm.users.list', HelpAdmin::permissionsUser()))
+            {
+                return redirect()->route('adm.users.list');
+            } else
+            {
+                return redirect()->route('adm.users.edit', $user->id);
+            }
         }
     }
 
@@ -82,12 +119,20 @@ class UserController extends Controller
     {
         $user = User::find($id);
 
-        return view('admin.users.alert', compact('user'));
+        return view('Admin.users.alert', compact('user'));
     }
     public function delete(Request $req)
     {
         $data = $req->all();
         User::find($data['id'])->delete();
+
+        return redirect()->route('adm.users.list');
+    }
+
+    public function toRestore($id)
+    {
+        $user = User::where('id', $id)->withTrashed()->first();
+        $user->restore();
 
         return redirect()->route('adm.users.list');
     }

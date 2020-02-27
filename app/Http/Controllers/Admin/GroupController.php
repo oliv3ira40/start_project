@@ -9,6 +9,9 @@ use App\Models\Admin\Group;
 use App\Models\Admin\CreatedPermission;
 use App\Models\Admin\Permission;
 
+use App\Http\Requests\Group\newGroup;
+use App\Http\Requests\Group\updateGroup;
+
 class GroupController extends Controller
 {
     public function __construct()
@@ -31,7 +34,7 @@ class GroupController extends Controller
 
         return view('Admin.groups.new', compact('created_permissions'));
     }
-    public function save(Request $req)
+    public function save(newGroup $req)
     {
         $data = $req->all();
 
@@ -74,7 +77,7 @@ class GroupController extends Controller
 
         return view('Admin.groups.edit', compact('group', 'permissions'));
     }
-    public function update(Request $req)
+    public function update(updateGroup $req)
     {
         $data = $req->all();
         

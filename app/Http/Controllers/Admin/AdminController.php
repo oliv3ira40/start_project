@@ -4,13 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 use App\Helpers\HelpAdmin;
 use App\Helpers\HelpMenuAdmin;
 
-use App\models\Admin\User;
-use App\models\Admin\Group;
-use App\models\Admin\CreatedPermission;
+use App\Models\Admin\User;
+use App\Models\Admin\Group;
+use App\Models\Admin\CreatedPermission;
+
+use App\Jobs\Admin\NotificationCalled;
+use Carbon\Carbon;
+use PhpParser\Node\Stmt\Foreach_;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class AdminController extends Controller
 {
@@ -23,20 +31,22 @@ class AdminController extends Controller
 
     public function index()
     {
-        $users = User::select('email', 'cpf', 'created_at', 'group_id')
-        ->orderBy('created_at', 'desc') ->get();
-        $groups = Group::orderBy('created_at')->get();
-        $created_permissions = CreatedPermission::all();
+        // dd(HelpAdmin::permissionsUser($user = null));
 
-        return view('Admin.index', compact(
-            'users',
-            'groups',
-            'created_permissions',
-        ));
+        $data['user'] = \Auth::user();
+        $data['users'] = User::select('id', 'first_name', 'last_name', 'email', 'group_id', 'deleted_at')
+            ->withTrashed()    
+            ->orderBy('created_at', 'desc')
+            ->paginate(10, ['*'], 'list_users_page');
+
+        $data['groups'] = Group::orderBy('created_at')->paginate(10, ['*'], 'groups_page');
+        $data['created_permissions'] = CreatedPermission::all();
+
+        return view('Admin.index', compact('data'));
     }
 
     public function withoutPermission()
     {
-        dd('Sem permissão');
+        return view('Admin.without_permission');
     }
 }

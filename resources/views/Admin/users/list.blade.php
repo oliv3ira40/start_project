@@ -32,35 +32,68 @@
                     <div class="panel-body">
                         <div class="table-wrap">
                             <div class="table-responsive">
-                                <table id="datable_1" class="table table-hover display  pb-30" >
+                                <table id="datable_1" class="table table-hover display pb-30">
                                     <thead>
                                         <tr>
+                                            <th>Id</th>
                                             <th>Nome</th>
-                                            <th>Sobrenome</th>
-                                            <th>Data de cadastro</th>
                                             <th>Grupos</th>
+                                            <th>E-mail</th>
+                                            <th>Status</th>
+                                            <th>Data de cadastro</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
+                                            <th>Id</th>
                                             <th>Nome</th>
-                                            <th>Sobrenome</th>
-                                            <th>Data de cadastro</th>
+                                            <th>E-mail</th>
                                             <th>Grupos</th>
+                                            <th>Status</th>
+                                            <th>Data de cadastro</th>
                                             <th>Ações</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         @foreach ($users as $user)
                                             <tr>
-                                                <td>{{ $user->first_name }}</td>
-                                                <td>{{ $user->last_name }}</td>
-                                                <td>{{ $user->created_at }}</td>
-                                                <td class="font-bold">{{ $user->Group->name }}</td>
                                                 <td>
-                                                    <a href="{{ route('adm.users.edit', $user->id) }}" class="btn btn-xs btn-warning">Editar</a>    
-                                                    <a href="{{ route('adm.users.alert', $user->id) }}" class="btn btn-xs btn-danger">Excluir</a>    
+                                                    {{ $user->id }}
+                                                </td>
+                                                <td>
+                                                    {{ HelpAdmin::completName($user) }}
+                                                </td>
+                                                <td style="color: {{ $user->Group->tag_color }};" class="font-bold">
+                                                    {{ $user->Group->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $user->email }}
+                                                </td>
+                                                <td>
+                                                    @if ($user->trashed())
+                                                        <span class="txt-danger">Bloqueado</span>
+                                                    @else
+                                                        <span class="txt-success">Ativo</span>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{ $user->created_at->format('d/m/Y H:i') }}
+                                                </td>
+                                                <td>
+                                                    @if ($user->trashed())
+                                                        @if (in_array('adm.users.to_restore', HelpAdmin::permissionsUser()))
+                                                            <a href="{{ route('adm.users.to_restore', $user->id) }}" class="my-btn btn btn-xs btn-primary">Restaurar</a>    
+                                                        @endif
+                                                    @else
+                                                        @if (in_array('adm.users.edit', HelpAdmin::permissionsUser()))
+                                                            <a href="{{ route('adm.users.edit', $user->id) }}" class="my-btn btn btn-xs btn-default">Editar</a>    
+                                                        @endif
+
+                                                        @if (in_array('adm.users.alert', HelpAdmin::permissionsUser()))
+                                                            <a href="{{ route('adm.users.alert', $user->id) }}" class="my-btn btn btn-xs btn-danger">Bloquear</a>    
+                                                        @endif
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -9,14 +9,17 @@
 		<meta name="author" content="hencework"/>
 		
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-		<link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+		<link rel="shortcut icon" href="{{ asset('blueeye/favicon.png') }}">
+		<link rel="icon" href="{{ asset('blueeye/favicon.png') }}" type="image/x-icon">
 		
 		<!-- vector map CSS -->
 		<link href="{{ asset('admin_theme/vendors/bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
 		
 		<!-- Custom CSS -->
-        <link href="{{ asset('admin_theme/theme/dist/css/style.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('admin_theme/theme/dist/css/style.css') }}" rel="stylesheet" type="text/css">
+		
+		<!-- Toast CSS -->
+		<link href="{{ asset('admin_theme/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
         
         <!-- My CSS -->
         <link href="{{ asset('admin_theme/theme/dist/css/my-css.css') }}" rel="stylesheet" type="text/css">

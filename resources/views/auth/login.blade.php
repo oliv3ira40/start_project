@@ -7,14 +7,8 @@
         <div class="la-anim-1"></div>
     </div>
     
-    <div class="wrapper  pa-0">
+    <div class="wrapper pa-0">
         <header class="sp-header">
-            <div class="sp-logo-wrap pull-left">
-                <a href="index.html">
-                    <img class="brand-img mr-10" src="{{asset('admin_theme/img/logo.png') }}" alt="brand"/>
-                    <span class="brand-text">ADM</span>
-                </a>
-            </div>
             <div class="form-group mb-0 pull-right">
                 <span class="inline-block pr-10">Não possui uma conta?</span>
                 <a class="inline-block btn btn-primary btn-rounded btn-outline" href="{{ route('register') }}">Registre-se</a>
@@ -27,18 +21,25 @@
 
                 <div class="table-struct full-width full-height">
                     <div class="table-cell vertical-align-middle auth-form-wrap">
-                        <div class="auth-form  ml-auto mr-auto no-float">
+                        <div class="auth-form ml-auto mr-auto no-float">
                             <div style="background-color: white; border-radius: 10px; border: solid 2px #e4e4e4;" class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="mb-30">
-                                        <h3 class="text-center txt-dark mt-10 mb-10">Login</h3>
-                                        <h6 class="text-center nonecase-font txt-grey">Digite seus dados abaixo</h6>
-                                    </div>	
+                                <div class="col-md-12">
+                                    <div class="col-md-12 col-xs-12 pl-0 pr-0 mt-10 mb-10">
+                                        <div class="col-md-6 col-xs-6 pl-0 text-left">
+                                            <a href="{{ route('adm.index') }}">
+                                                <!-- <img class="brand-img" src="{{ asset('blueeye/logo-black.png') }}" alt="brand"/> -->
+                                                logo
+                                            </a>
+                                        </div>
+                                        <div style="border-left: solid black 2px; margin-top: 18px;" class="col-md-6 col-xs-6 text-left">
+                                            <h4 class="txt-dark mt-10 mb-10">Login</h4>
+                                        </div>
+                                    </div>
                                     <div class="form-wrap">
                                         {!! Form::open(['url'=> 'login']) !!}
 
                                             <div class="form-group">
-                                                <label class="control-label mb-5" for="email">E-mail</label>
+                                                <label class="control-label nonecase-font mb-5" for="email">E-mail</label>
                                                 {!! Form::email('email', null, ['class'=>'form-control', 'id'=>'email']) !!}
                                                 @if ($errors->has('email'))
                                                     <small class="pl-0 txt-danger txt-trans-initial font-12 font-bold">
@@ -48,16 +49,17 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="pull-left control-label mb-5" for="password">Senha</label>
-
-                                                <a class="txt-primary block mb-5 pull-right font-12 font-bold" href="forgot-password.html">Esqueceu a senha ?</a>
-                                                <div class="clearfix"></div>
-                                                
                                                 {!! Form::password('password', ['class'=>'form-control', 'id'=>'password']) !!}
                                                 @if ($errors->has('password'))
                                                     <small class="txt-danger txt-trans-initial font-12 font-bold">
                                                         {{ $errors->first('password') }}
                                                     </small>
                                                 @endif
+
+                                                <a class="txt-primary block mt-5 mb-5 pull-right font-12 font-bold" href="{{ route('adm.reset_password') }}">
+                                                    Esqueceu a senha?
+                                                </a>
+                                                <div class="clearfix"></div>
                                             </div>
                                             <div class="form-group text-center">
                                                 <button type="submit" class="btn btn-block btn-primary">Entrar</button>

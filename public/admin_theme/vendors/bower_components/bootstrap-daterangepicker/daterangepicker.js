@@ -96,7 +96,7 @@
             options.template = '<div class="daterangepicker dropdown-menu">' +
                 '<div class="calendar left">' +
                     '<div class="daterangepicker_input">' +
-                      '<input class="input-mini form-control" type="text" name="daterangepicker_start" value="" />' +
+                      '<input class="input-mini" type="text" name="daterangepicker_start" value="" />' +
                       '<i class="fa fa-calendar glyphicon glyphicon-calendar"></i>' +
                       '<div class="calendar-time">' +
                         '<div></div>' +
@@ -107,7 +107,7 @@
                 '</div>' +
                 '<div class="calendar right">' +
                     '<div class="daterangepicker_input">' +
-                      '<input class="input-mini form-control" type="text" name="daterangepicker_end" value="" />' +
+                      '<input class="input-mini" type="text" name="daterangepicker_end" value="" />' +
                       '<i class="fa fa-calendar glyphicon glyphicon-calendar"></i>' +
                       '<div class="calendar-time">' +
                         '<div></div>' +
@@ -115,13 +115,21 @@
                       '</div>' +
                     '</div>' +
                     '<div class="calendar-table"></div>' +
-                '</div>' +
-                '<div class="ranges">' +
-                    '<div class="range_inputs">' +
-                        '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
-                        '<button class="cancelBtn" type="button"></button>' +
+                '</div><br>'+
+
+                // BOTÕES APLICAR E CANCELAR
+                '<div class="col-md-12">' +
+                    '<div style="width: 98%;" class="ranges range_inputs">' +
+                        '<button class="cancelBtn pull-left" type="button"></button>' +
+                        '<button class="applyBtn pull-right" disabled="disabled" type="button"></button> ' +
                     '</div>' +
                 '</div>' +
+                // '<div class="ranges">' +
+                //     '<div class="range_inputs">' +
+                //         '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
+                //         '<button class="cancelBtn" type="button"></button>' +
+                //     '</div>' +
+                // '</div>' +
             '</div>';
 
         this.parentEl = (options.parentEl && $(options.parentEl).length) ? $(options.parentEl) : $(this.parentEl);

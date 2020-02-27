@@ -8,8 +8,10 @@ class Group extends Model
 {
     protected $table = 'groups';
     protected $fillable = [
+        'hierarchy_level',
         'name',
-        'tag_color'
+        'tag',
+        'tag_color',
     ];
 
 

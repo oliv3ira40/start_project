@@ -4,6 +4,13 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+
+use App\Helpers\HelpCalled;
+
+use App\Models\Admin\Calleds\Called;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +20,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        \Laravelista\LumenVendorPublish\VendorPublishCommand::class,
     ];
 
     /**
@@ -24,8 +31,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        
     }
 
     /**

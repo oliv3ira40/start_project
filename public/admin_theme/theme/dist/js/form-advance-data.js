@@ -6,7 +6,11 @@ $(document).ready(function() {
 $(".select2").select2();
 
 /* Bootstrap Select Init*/
-$('.selectpicker').selectpicker();
+$('.selectpicker').selectpicker(
+	{
+		noneSelectedText : 'Nenhum fabricante selecionado'
+	}
+);
 
 /* Switchery Init*/
 var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));

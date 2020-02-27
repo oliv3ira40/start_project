@@ -16,32 +16,51 @@
 					'permission'=>'#',
 					'name_menu'=>'',
 				],
+
+				// Página inicial
 				[
-					'permission'=>'	',
+					'permission'=>'adm.index',
 					'label'=>'Página inicial',
 					'url'=>'adm.index',
 					'icon'=>'fa fa-home',
 					'line'=>true,
-					'active'=>(in_array($action, ['adm.index'])) ? 'active' : '',
+
+					'a-active'=>(in_array($action, ['adm.index'])) ? 'active' : '',
+					'aria-expanded'=>(in_array($action, ['adm.index'])) ? 'true' : '',
 				],
 
+				// MENU Desenvolvedor
 				[
 					'permission'=>'adm.menu_developer',
 					'name_menu'=>'Desenvolvedor',
 				],
 
+				// Usuários
 				[
 					'permission'=>'adm.menu_users',
 					'label'=>'Usuários',
 					'url'=>'#',
 					'link_btn'=>'user_id',
 					'icon'=>'fa fa-users',
-					
-					'active'=>(in_array($action, [
+
+					'a-active'=>(in_array($action, [
 						'adm.users.list',
 						'adm.users.new',
 						'adm.users.edit',
+						'adm.users.alert',
 					])) ? 'active' : '',
+					'aria-expanded'=>(in_array($action, [
+						'adm.users.list',
+						'adm.users.new',
+						'adm.users.edit',
+						'adm.users.alert',
+					])) ? 'true' : '',
+					'ul-active'=>(in_array($action, [
+						'adm.users.list',
+						'adm.users.new',
+						'adm.users.edit',
+						'adm.users.alert',
+					])) ? 'in' : '',
 					
 					'sub_menu'=>[
 						[
@@ -57,18 +76,33 @@
 					],
 					'line'=>true,
 				],
+
+				// Grupo
 				[
 					'permission'=>'adm.menu_groups',
 					'label'=>'Grupo',
 					'url'=>'#',
 					'link_btn'=>'group_id',
 					'icon'=>'fa fa-th-large',
-					
-					'active'=>(in_array($action, [
+
+					'a-active'=>(in_array($action, [
 						'adm.groups.list',
 						'adm.groups.new',
 						'adm.groups.edit',
+						'adm.groups.alert',
 					])) ? 'active' : '',
+					'aria-expanded'=>(in_array($action, [
+						'adm.groups.list',
+						'adm.groups.new',
+						'adm.groups.edit',
+						'adm.groups.alert',
+					])) ? 'true' : '',
+					'ul-active'=>(in_array($action, [
+						'adm.groups.list',
+						'adm.groups.new',
+						'adm.groups.edit',
+						'adm.groups.alert',
+					])) ? 'in' : '',
 					
 					'sub_menu'=>[
 						[
@@ -84,18 +118,33 @@
 					],
 					'line'=>true,
 				],
+
+				// Permissões
 				[
 					'permission'=>'adm.menu_created_permissions',
 					'label'=>'Permissões',
 					'url'=>'#',
 					'link_btn'=>'permi_id',
 					'icon'=>'fa fa-list',
-					
-					'active'=>(in_array($action, [
+
+					'a-active'=>(in_array($action, [
 						'adm.created_permissions.list',
 						'adm.created_permissions.new',
 						'adm.created_permissions.edit',
+						'adm.created_permissions.alert',
 					])) ? 'active' : '',
+					'aria-expanded'=>(in_array($action, [
+						'adm.created_permissions.list',
+						'adm.created_permissions.new',
+						'adm.created_permissions.edit',
+						'adm.created_permissions.alert',
+					])) ? 'true' : '',
+					'ul-active'=>(in_array($action, [
+						'adm.created_permissions.list',
+						'adm.created_permissions.new',
+						'adm.created_permissions.edit',
+						'adm.created_permissions.alert',
+					])) ? 'in' : '',
 					
 					'sub_menu'=>[
 						[
@@ -112,5 +161,6 @@
 					'line'=>true,
 				],
 			];
+			
 		}
 	}

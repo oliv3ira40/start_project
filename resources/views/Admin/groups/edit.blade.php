@@ -27,36 +27,69 @@
                                 {!! Form::hidden('id', null) !!}
                             
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="name" class="control-label txt-trans-initial mb-10 text-left">
-                                            Nome*
-                                            @if ($errors->has('name'))
-                                                <small class="txt-danger txt-trans-initial font-bold">
-                                                    {{ $errors->first('name') }}
-                                                </small>
-                                            @endif
-                                        </label>
-                                        {!! Form::text('name', null, ['class'=>'form-control', 'id'=>'first_name']) !!}
+
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <label for="hierarchy_level" class="control-label txt-trans-initial mb-10 text-left">
+                                                Nível hierárquico*
+                                                @if ($errors->has('hierarchy_level'))
+                                                    <small class="txt-danger txt-trans-initial font-bold">
+                                                        {{ $errors->first('hierarchy_level') }}
+                                                    </small>
+                                                @endif
+                                            </label>
+                                            {!! Form::text('hierarchy_level', null, ['class'=>'form-control', 'id'=>'hierarchy_level']) !!}
+                                        </div>
                                     </div>
 
-                                    <label for="tag_color" class="control-label txt-trans-initial mb-10 text-left">
-                                        Cor da tag*
-                                        @if ($errors->has('tag_color'))
-                                            <small class="txt-danger txt-trans-initial font-bold">
-                                                {{ $errors->first('tag_color') }}
-                                            </small>
-                                        @endif
-                                        <div class="colorpicker input-group colorpicker-component">
-                                            <input type="text" name="tag_color" value="{{ $group->tag_color }}" class="form-control" />
-                                            <span class="input-group-addon"><i></i></span>
+                                    <div class="row form-group">
+                                        <div class="col-md-12">
+                                            <label for="name" class="control-label txt-trans-initial mb-10 text-left">
+                                                Nome*
+                                                @if ($errors->has('name'))
+                                                    <small class="txt-danger txt-trans-initial font-bold">
+                                                        {{ $errors->first('name') }}
+                                                    </small>
+                                                @endif
+                                            </label>
+                                            {!! Form::text('name', null, ['class'=>'form-control', 'id'=>'first_name']) !!}
                                         </div>
-                                    </label>
+                                    </div>
+                                    
+                                    <div class="row form-group">
+                                        <div class="col-md-6">
+                                            <label for="tag" class="control-label txt-trans-initial mb-10 text-left">
+                                                Tag*
+                                                @if ($errors->has('tag'))
+                                                <small class="txt-danger txt-trans-initial font-bold">
+                                                    {{ $errors->first('tag') }}
+                                                </small>
+                                                @endif
+                                            </label>
+                                            {!! Form::text('tag', null, ['class'=>'form-control']) !!}
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="tag_color" class="control-label txt-trans-initial mb-10 text-left">
+                                                Cor*
+                                                @if ($errors->has('tag_color'))
+                                                    <small class="txt-danger txt-trans-initial font-bold">
+                                                        {{ $errors->first('tag_color') }}
+                                                    </small>
+                                                @endif
+                                            </label>
+                                            <div class="colorpicker input-group colorpicker-component">
+                                                <input id="tag_color" type="text" name="tag_color" value="{{ $group->tag_color }}" class="form-control" />
+                                                <span class="input-group-addon"><i></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="permissions" class="control-label txt-trans-initial mb-10 text-left">
-                                            Permissões*
+                                            Permissões
                                             @if ($errors->has('permissions'))
                                                 <small class="txt-danger txt-trans-initial font-bold">
                                                     {{ $errors->first('permissions') }}

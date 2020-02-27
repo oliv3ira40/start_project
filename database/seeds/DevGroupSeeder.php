@@ -14,8 +14,10 @@ class DevGroupSeeder extends Seeder
     public function run()
     {
         $data = [
-			'name'=>'Desenvolvedor',
-			'tag_color'=>'#b02525',
+        	'hierarchy_level'	=>	'9999',
+			'name'				=>	'Desenvolvedor',
+			'tag'				=>	'developer',
+			'tag_color'			=>	'#b02525',
 		];
 		if (Group::where('name', '=', $data['name'])->count()) {
 			$group = Group::where('name', '=', $data['name'])->first();

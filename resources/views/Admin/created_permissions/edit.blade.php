@@ -28,15 +28,25 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="name" class="control-label mb-10 text-left">
-                                        Nome
+                                        Nome*
+                                        @if ($errors->has('name'))
+                                            <small class="txt-danger txt-trans-initial font-bold">
+                                                {{ $errors->first('name') }}
+                                            </small>
+                                        @endif
                                     </label>
-                                    {!! Form::text('name', null, ['class'=>'form-control', 'id'=>'name', 'required'=>'true']) !!}
+                                    {!! Form::text('name', null, ['class'=>'form-control', 'id'=>'name']) !!}
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="route" class="control-label mb-10 text-left">
-                                        Rota
+                                        Rota*
+                                        @if ($errors->has('route'))
+                                            <small class="txt-danger txt-trans-initial font-bold">
+                                                {{ $errors->first('route') }}
+                                            </small>
+                                        @endif
                                     </label>
-                                    {!! Form::text('route', null, ['class'=>'form-control', 'id'=>'route', 'required'=>'true']) !!}
+                                    {!! Form::text('route', null, ['class'=>'form-control', 'id'=>'route']) !!}
                                 </div>
                                 <div class="form-group col-md-12 mb-10">
                                     <div class="checkbox checkbox-primary">
