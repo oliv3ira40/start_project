@@ -22,87 +22,85 @@
                 <div class="table-struct full-width full-height">
                     <div class="table-cell vertical-align-middle auth-form-wrap">
                         <div class="auth-form ml-auto mr-auto no-float">
-                            <div style="background-color: white; border-radius: 10px; border: solid 2px #e4e4e4;" class="row">
-                                <div class="col-sm-12 col-xs-12">
-                                    <div class="col-md-12 col-xs-12 pl-0 pr-0 mt-10 mb-20">
-                                        <div class="col-md-6 col-xs-6 pl-0 text-left">
-                                            <a href="{{ route('adm.index') }}">
-                                                <!-- <img class="brand-img" src="{{ asset('blueeye/logo-black.png') }}" alt="brand"/> -->
-                                                logo
-                                            </a>
-                                        </div>
-                                        <div style="border-left: solid black 2px; margin-top: 18px;" class="col-md-6 col-xs-6 text-left">
-                                            <h4 class="txt-dark mt-10 mb-10 txt-trans-initial">Registre-se</h4>
-                                        </div>
+                            <div style="background-color: white; border-radius: 10px; border: solid 2px #e4e4e4;" class="row ml-0 mr-0">
+                                <div class="col-md-12 col-xs-12 mt-10 mb-10 header-auth">
+                                    <div class="col-md-6 col-xs-6 pl-0 text-left header-logo">
+                                        <a href="{{ route('adm.index') }}">
+                                            <!-- <img class="brand-img" src="{{ asset('assets/logo.png') }}" alt="NBD"/> -->
+                                            logo
+                                        </a>
                                     </div>
-                                    <div class="form-wrap">
-                                        {!! Form::open(['url'=> 'register']) !!}
-
-                                            <div class="form-group row">
-                                                <div class="col-md-6">
-                                                    <label class="control-label mb-5" for="first_name">Nome</label>
-                                                    {!! Form::text('first_name', null, ['class'=>'form-control', 'id'=>'first_name']) !!}
-                                                    @if ($errors->has('first_name'))
-                                                        <small class="pl-0 txt-danger txt-trans-initial font-12 font-bold">
-                                                            {{ $errors->first('first_name') }}
-                                                        </small>
-                                                    @endif
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label class="control-label mb-5" for="last_name">Sobrenome</label>
-                                                    {!! Form::text('last_name', null, ['class'=>'form-control', 'id'=>'last_name']) !!}
-                                                    @if ($errors->has('last_name'))
-                                                        <small class="pl-0 txt-danger txt-trans-initial font-12 font-bold">
-                                                            {{ $errors->first('last_name') }}
-                                                        </small>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                                
-                                            <div class="form-group">
-                                                <label class="control-label mb-5 nonecase-font" for="email">E-mail</label>
-                                                {!! Form::email('email', null, ['class'=>'form-control', 'id'=>'email']) !!}
-                                                @if ($errors->has('email'))
-                                                    <small class="pl-0 txt-danger txt-trans-initial font-12 font-bold">
-                                                        {{ $errors->first('email') }}
-                                                    </small>
-                                                @endif
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <div class="col-md-6">
-                                                    <label class="pull-left control-label mb-5" for="password">Senha</label>
-                                                    
-                                                    {!! Form::password('password', ['class'=>'form-control', 'id'=>'password']) !!}
-                                                    @if ($errors->has('password'))
-                                                        <small class="txt-danger txt-trans-initial font-12 font-bold">
-                                                            {{ $errors->first('password') }}
-                                                        </small>
-                                                    @endif
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <label class="pull-left control-label mb-5 nonecase-font" for="password_confirmation">Confirme sua senha</label>
-                                                    
-                                                    {!! Form::password('password_confirmation', ['class'=>'form-control', 'id'=>'password_confirmation']) !!}
-                                                    @if ($errors->has('password_confirmation'))
-                                                        <small class="txt-danger txt-trans-initial font-12 font-bold">
-                                                            {{ $errors->first('password_confirmation') }}
-                                                        </small>
-                                                    @endif
-                                                </div>
-                                            </div>
-                                                
-                                            <div class="form-group text-center">
-                                                <button type="submit" class="btn btn-block btn-primary">Registrar</button>
-                                            </div>
-                                        {!! Form::close() !!}
+                                    <div class="col-md-6 col-xs-6 text-left header-title">
+                                        <h4 class="txt-dark mt-10 mb-10 font-20">Registre-se</h4>
                                     </div>
-                                </div>	
+                                </div>
+                                <div class="form-wrap col-md-12 col-xs-12">
+                                    {!! Form::open(['url'=> 'register']) !!}
+
+                                        <div class="form-group">
+                                            <label class="control-label mb-5" for="first_name">Nome</label>
+                                            
+                                            @if ($errors->has('first_name'))
+                                                <small class="pl-0 txt-danger txt-trans-initial font-12 font-bold">
+                                                    {{ $errors->first('first_name') }}
+                                                </small>
+                                            @endif
+                                            {!! Form::text('first_name', null, ['class'=>'form-control', 'id'=>'first_name', 'autofocus']) !!}
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label mb-5" for="last_name">Sobrenome</label>
+                                                
+                                            @if ($errors->has('last_name'))
+                                                <small class="pl-0 txt-danger txt-trans-initial font-12 font-bold">
+                                                    {{ $errors->first('last_name') }}
+                                                </small>
+                                            @endif
+                                            {!! Form::text('last_name', null, ['class'=>'form-control', 'id'=>'last_name']) !!}
+                                        </div>
+
+                                            
+                                        <div class="form-group">
+                                            <label class="control-label mb-5 nonecase-font" for="email">E-mail</label>
+                                            
+                                            @if ($errors->has('email'))
+                                                <small class="pl-0 txt-danger txt-trans-initial font-12 font-bold">
+                                                    {{ $errors->first('email') }}
+                                                </small>
+                                            @endif
+                                            {!! Form::email('email', null, ['class'=>'form-control', 'id'=>'email']) !!}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="pull-left control-label mb-5" for="password">Senha</label>
+                                            
+                                            @if ($errors->has('password'))
+                                                <small class="txt-danger txt-trans-initial font-12 font-bold">
+                                                    {{ $errors->first('password') }}
+                                                </small>
+                                            @endif
+                                            {!! Form::password('password', ['class'=>'form-control', 'id'=>'password']) !!}
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="pull-left control-label mb-5 nonecase-font" for="password_confirmation">Confirme sua senha</label>
+                                            
+                                            @if ($errors->has('password_confirmation'))
+                                                <small class="txt-danger txt-trans-initial font-12 font-bold">
+                                                    {{ $errors->first('password_confirmation') }}
+                                                </small>
+                                            @endif
+                                            {!! Form::password('password_confirmation', ['class'=>'form-control', 'id'=>'password_confirmation']) !!}
+                                        </div>
+                                            
+                                        <div class="form-group text-center">
+                                            <button type="submit" class="btn btn-block btn-primary">Registrar</button>
+                                        </div>
+                                    {!! Form::close() !!}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>	
+                </div>  
             </div>
             
         </div>

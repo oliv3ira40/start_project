@@ -24,14 +24,14 @@
                         <div class="auth-form ml-auto mr-auto no-float">
                             <div style="background-color: white; border-radius: 10px; border: solid 2px #e4e4e4;" class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <div class="col-md-12 col-xs-12 pl-0 pr-0 mt-10 mb-20">
-                                        <div class="col-md-6 col-xs-6 pl-0 text-left">
+                                    <div class="col-md-12 col-xs-12 pl-0 pr-0 mt-10 mb-20 header-auth">
+                                        <div class="col-md-6 col-xs-6 pl-0 text-left header-logo">
                                             <a href="{{ route('adm.index') }}">
-                                                <!-- <img class="brand-img" src="{{ asset('blueeye/logo-black.png') }}" alt="brand"/> -->
+                                                <!-- <img class="brand-img" src="{{ asset('assets/logo.png') }}" alt="NBD"/> -->
                                                 logo
                                             </a>
                                         </div>
-                                        <div style="border-left: solid black 2px; margin-top: 18px;" class="col-md-6 col-xs-6 text-left">
+                                        <div class="col-md-6 col-xs-6 text-left header-title">
                                             <h4 class="txt-dark mt-10 mb-10 txt-trans-initial">Resetar senha</h4>
                                         </div>
                                     </div>
@@ -40,23 +40,24 @@
 
                                             <div class="form-group">
                                                 <label class="control-label nonecase-font mb-5" for="email">E-mail</label>
-                                                {!! Form::email('email', null, ['class'=>'form-control', 'id'=>'email']) !!}
+                                                
                                                 @if ($errors->has('email'))
                                                     <small class="pl-0 txt-danger txt-trans-initial font-12 font-bold">
                                                         {{ $errors->first('email') }}
                                                     </small>
                                                 @endif
+                                                {!! Form::email('email', null, ['class'=>'form-control', 'id'=>'email', 'autofocus']) !!}
                                             </div>
                                             <div class="form-group text-center">
                                                 <button type="submit" class="btn btn-block btn-primary txt-trans-initial">Avançar</button>
                                             </div>
                                         {!! Form::close() !!}
                                     </div>
-                                </div>	
+                                </div>  
                             </div>
                         </div>
                     </div>
-                </div>	
+                </div>  
             </div>
             
         </div>

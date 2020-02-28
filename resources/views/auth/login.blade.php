@@ -22,16 +22,16 @@
                 <div class="table-struct full-width full-height">
                     <div class="table-cell vertical-align-middle auth-form-wrap">
                         <div class="auth-form ml-auto mr-auto no-float">
-                            <div style="background-color: white; border-radius: 10px; border: solid 2px #e4e4e4;" class="row">
+                            <div style="background-color: white; border-radius: 10px; border: solid 2px #e4e4e4;" class="row ml-0 mr-0">
                                 <div class="col-md-12">
-                                    <div class="col-md-12 col-xs-12 pl-0 pr-0 mt-10 mb-10">
-                                        <div class="col-md-6 col-xs-6 pl-0 text-left">
+                                    <div class="col-md-12 col-xs-12 pl-0 pr-0 mt-10 mb-10 header-auth">
+                                        <div class="col-md-6 col-xs-6 pl-0 text-left header-logo">
                                             <a href="{{ route('adm.index') }}">
-                                                <!-- <img class="brand-img" src="{{ asset('blueeye/logo-black.png') }}" alt="brand"/> -->
+                                                <!-- <img class="brand-img" src="{{ asset('assets/logo.png') }}" alt="NBD"/> -->
                                                 logo
                                             </a>
                                         </div>
-                                        <div style="border-left: solid black 2px; margin-top: 18px;" class="col-md-6 col-xs-6 text-left">
+                                        <div class="col-md-6 col-xs-6 text-left header-title">
                                             <h4 class="txt-dark mt-10 mb-10">Login</h4>
                                         </div>
                                     </div>
@@ -66,11 +66,11 @@
                                             </div>
                                         {!! Form::close() !!}
                                     </div>
-                                </div>	
+                                </div>  
                             </div>
                         </div>
                     </div>
-                </div>	
+                </div>  
             </div>
             
         </div>
