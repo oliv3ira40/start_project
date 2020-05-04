@@ -31,70 +31,32 @@
                 <a href="javascript:void(0);" class="right-bar-toggle">
                     <i class="mdi mdi-close-circle-outline"></i>
                 </a>
-                <h4 class="">Notifications</h4>
+                <h4 class="">Configurações</h4>
                 <div class="notification-list nicescroll">
                     <ul class="list-group list-no-border user-list">
                         <li class="list-group-item">
                             <a href="#" class="user-list-item">
-                                <div class="avatar">
-                                    <img src="{{ asset('admin/assets/images/users/avatar-2.jpg') }}" alt="">
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">Michael Zenaty</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">2 hours ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="user-list-item">
-                                <div class="icon bg-info">
-                                    <i class="mdi mdi-account"></i>
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">New Signup</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">5 hours ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
-                            <a href="#" class="user-list-item">
-                                <div class="icon bg-pink">
-                                    <i class="mdi mdi-comment"></i>
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">New Message received</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">1 day ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item active">
-                            <a href="#" class="user-list-item">
-                                <div class="avatar">
-                                    <img src="{{ asset('admin/assets/images/users/avatar-3.jpg') }}" alt="">
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">James Anderson</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">2 days ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item active">
-                            <a href="#" class="user-list-item">
-                                <div class="icon bg-warning">
-                                    <i class="mdi mdi-settings"></i>
-                                </div>
-                                <div class="user-desc">
-                                    <span class="name">Settings</span>
-                                    <span class="desc">There are new settings available</span>
-                                    <span class="time">1 day ago</span>
-                                </div>
-                            </a>
-                        </li>
+                                <div class="user-desc ml-0">
+                                    {!! Form::open(['url'=>route('adm.user.update_dark_mode'), 'id'=>'update_dark_mode']) !!}
+                                        {!! Form::hidden('id', \Auth::user()->UserSetting->id) !!}
 
+                                        <label for="dark_mode" id="label-dark-mode" style="width: min-content;">
+                                            <span class="name font-weight font-15">
+                                                {{ (\Auth::user()->UserSetting->dark_mode) ? 'Desativar' : 'Ativar' }}
+                                                modo escuro
+                                            </span>
+                                        </label>
+                                        <div class="div-btn-dark-mode">
+                                            @if (\Auth::user()->UserSetting->dark_mode)
+                                                <input id="dark_mode" type="checkbox" checked data-plugin="switchery" data-size="small" data-color="#4c5667"/>
+                                            @else
+                                                <input id="dark_mode" type="checkbox" data-plugin="switchery" data-size="small" data-color="#4c5667"/>
+                                            @endif
+                                        </div>
+                                    {!! Form::close() !!}
+                                </div>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -175,6 +137,8 @@
         <script src="{{ asset('js/div_update_password.js') }}"></script>
         <script src="{{ asset('js/form_advanced.js') }}"></script>
         <script src="{{ asset('js/notifications.js') }}"></script>
+        
+        <script src="{{ asset('js/user_settings/btn_dark_mode.js') }}"></script>
         {{-- My js --}}
 
     </body>

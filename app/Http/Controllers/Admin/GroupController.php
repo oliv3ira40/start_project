@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\HelpAdmin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Admin\User;
 use App\Models\Admin\Group;
 use App\Models\Admin\CreatedPermission;
 use App\Models\Admin\Permission;
@@ -109,13 +111,32 @@ class GroupController extends Controller
     public function alert($id)
     {
         $group = Group::find($id);
+        if (HelpAdmin::isAProtectedGroup($group))
+        {
+            session()->flash('notification', 'info:Este grupo não pode ser excluído');
+            return redirect()->route('adm.groups.list');
+        }
+        
+        $users = User::where('group_id', $id)->count();
 
-        return view('admin.groups.alert', compact('group'));
+        return view('admin.groups.alert', compact('group', 'users'));
     }
     public function delete(Request $req)
     {
         $data = $req->all();
-        Group::find($data['id'])->delete();
+        $group = Group::find($data['id']);
+        if (HelpAdmin::isAProtectedGroup($group))
+        {
+            session()->flash('notification', 'info:Este grupo não pode ser excluído');
+            return redirect()->route('adm.groups.list');
+        }
+        
+        $public_group = Group::where('tag', 'public')->first();
+        $users = User::where('group_id', $data['id'])
+            ->withTrashed()
+            ->update(['group_id' => $public_group->id]);
+
+        $group->delete();
 
         session()->flash('notification', 'success:Grupo excluído!');
         return redirect()->route('adm.groups.list');

@@ -51,7 +51,7 @@
 }
 .btn-trans.btn
 {
-    border: solid 1px #98a6ad !important;
+    border: solid 1px #cccdcd !important;
     font-weight: 500 !important;
 }
 
@@ -89,4 +89,11 @@
     width: 100% !important;
     background-size: cover !important;
     border: 20px solid rgba(67, 89, 102, 0.3) !important;
+}
+
+.div-btn-dark-mode
+{
+    float: right;
+    top: -5px;
+    position: relative;
 }

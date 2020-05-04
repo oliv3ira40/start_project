@@ -47,7 +47,8 @@ class UserController extends Controller
         $data = $req->all();
         $data['password'] = bcrypt($data['password']);
         
-        User::create($data);
+        $user = User::create($data);
+        HelpAdmin::generateUserSettings($user);
 
         session()->flash('notification', 'success:Usuário criado!');
         if (isset($data['stay_on_page']) AND $data['stay_on_page'] == 'on')
@@ -70,6 +71,8 @@ class UserController extends Controller
             session()->flash('notification', 'error:Este usuário não está mais disponível');
             return redirect()->route('adm.index');
         }
+        
+        HelpAdmin::generateUserSettings($user);
 
         if (HelpAdmin::IsUserDeveloper($user) AND
             !HelpAdmin::IsUserDeveloper()) {

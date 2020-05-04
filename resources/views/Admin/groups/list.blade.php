@@ -16,6 +16,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Permissões</th>
+                            <th>Usuários</th>
                             <th>Data de cadastro</th>
                             <th>Ações</th>
                         </tr>
@@ -31,10 +32,19 @@
                                 <td>
                                     {{ $group->Permission->count() }}
                                 </td>
+                                <td>
+                                    {{ $group->User->count() }}
+                                </td>
                                 <td class="font-bold">{{ $group->created_at }}</td>
                                 <td>
-                                    <a href="{{ route('adm.groups.edit', $group->id) }}" class="my-btn btn btn-xs btn-trans btn-warning">Editar</a>    
-                                    <a href="{{ route('adm.groups.alert', $group->id) }}" class="my-btn btn btn-xs btn-trans btn-danger">Excluir</a>    
+                                    @if (in_array('adm.groups.edit', HelpAdmin::PermissionsUser()))
+                                        <a href="{{ route('adm.groups.edit', $group->id) }}" class="my-btn btn btn-xs btn-trans btn-warning">Editar</a>
+                                    @endif
+                                    
+                                    @if (in_array('adm.groups.alert', HelpAdmin::PermissionsUser())
+                                        AND !HelpAdmin::isAProtectedGroup($group))
+                                        <a href="{{ route('adm.groups.alert', $group->id) }}" class="my-btn btn btn-xs btn-trans btn-danger">Excluir</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

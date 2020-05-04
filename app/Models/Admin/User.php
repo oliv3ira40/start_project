@@ -56,4 +56,9 @@ class User extends Authenticatable
             return $this->hasOne('App\Models\Peoples\Shopkeeper', 'user_id');
         }
     // Peoples
+
+    function UserSetting()
+    {
+        return $this->HasOne(UserSetting::class, 'user_id');
+    }
 }

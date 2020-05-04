@@ -35,7 +35,11 @@
         <!-- App css -->
         <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('admin/assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset('admin/assets/css/style.css') }}" rel="stylesheet" type="text/css" />
+        @if (\Auth::user()->UserSetting->dark_mode)
+            <link href="{{ asset('admin/assets/css/style_dark.css') }}" rel="stylesheet" type="text/css" />
+        @else
+            <link href="{{ asset('admin/assets/css/style.css') }}" rel="stylesheet" type="text/css" />
+        @endif
         
         <script src="{{ asset('admin/assets/js/modernizr.min.js') }}"></script>
         

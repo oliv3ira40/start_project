@@ -51,6 +51,10 @@ Route::group(['middleware' => 'VerifyUserPermissions'], function(){
             Route::get('/usuarios/alerta-exclusao-definitiva/{id}', 'Admin\UserController@definitiveExclusionAlert')->name('adm.users.definitive_exclusion_alert');
             Route::post('/users/definitive-exclusion', 'Admin\UserController@definitiveExclusion')->name('adm.users.definitive_exclusion');
         // User
+
+        // UserSetting
+            Route::post('/user/update_dark_mode', 'Admin\UserSettingController@updateDarkMode')->name('adm.user.update_dark_mode');
+        // UserSetting
         
     });	/*Fecha grupo de verificação de permissões*/
         

@@ -7,13 +7,15 @@ use Closure;
 use App\Models\Admin\Group;
 use App\Models\Admin\CreatedPermission;
 use App\Models\Admin\Permission;
+use App\Models\Admin\UserSetting;
 
 class VerifyUserPermissions
 {
     public function handle($request, Closure $next)
     {
         $action = \Request::route()->action['as'] ?? '';
-        if (\Auth::user()) {
+        if (\Auth::user())
+        {
             $group_id = \Auth::user()->group_id;
             if ($group_id == null) return redirect()->route('adm.withoutPermission');
 
@@ -30,7 +32,6 @@ class VerifyUserPermissions
                     return redirect()->route('adm.withoutPermission');
                 }
             }
-
         }
         
         return $next($request);

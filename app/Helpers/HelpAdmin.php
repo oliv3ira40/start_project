@@ -6,6 +6,7 @@
 	use App\Models\Admin\Group;
 	use App\Models\Admin\User;
 	use App\Models\Admin\CreatedPermission;
+	use App\Models\Admin\UserSetting;
 	
 	/**
 	* HelpAdmin
@@ -126,5 +127,24 @@
 			$bar = DIRECTORY_SEPARATOR;
 
 			return '../storage'.$bar.'app'.$bar.'public'.$bar;
+		}
+
+		public static function isAProtectedGroup($group)
+		{
+			if (in_array($group->tag, ['public', 'developer']))
+			{
+				return true;
+			}
+			return false;
+		}
+
+		public static function generateUserSettings($user)
+		{
+			if ($user->UserSetting == null) {
+				UserSetting::create(['user_id' => $user->id]);
+
+				return true;
+			}
+			return false;
 		}
 	}

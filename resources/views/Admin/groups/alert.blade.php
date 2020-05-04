@@ -7,6 +7,13 @@
         <div class="col-md-12">
             <div class="card-box">
                 <h4 class="m-t-0 header-title">Excluindo Grupo</h4>
+                @if ($users > 0)
+                    <h4 class="m-t-0">
+                        <small class="text-white">
+                            Atualmente {{ $users }} usuário(s) estão vinculados a este grupo, caso prossiga com a exclusão desde grupo eles serão transferidos para o grupo "Publico".
+                        </small>
+                    </h4>
+                @endif
                 {!! Form::model($group, ['url'=>route('adm.groups.delete')]) !!}
                     {!! Form::hidden('id', null) !!}
                     <div class="form-row">
@@ -69,7 +76,6 @@
                             {!! Form::submit('Excluir', ['class'=>'btn btn-xs btn-block btn-trans btn-danger']) !!}
                         </div>
                     </div>
-
                 {!! Form::close() !!}
             </div>
         </div>
