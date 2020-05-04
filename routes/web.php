@@ -55,6 +55,10 @@ Route::group(['middleware' => 'VerifyUserPermissions'], function(){
         // UserSetting
             Route::post('/user/update_dark_mode', 'Admin\UserSettingController@updateDarkMode')->name('adm.user.update_dark_mode');
         // UserSetting
+            
+        // Avatar
+            Route::post('/avatars/change_user_avatar', 'Admin\AvatarController@changeUserAvatar')->name('adm.avatars.change_user_avatar');
+        // Avatar
         
     });	/*Fecha grupo de verificação de permissões*/
         

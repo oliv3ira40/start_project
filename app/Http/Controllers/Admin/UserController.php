@@ -10,7 +10,9 @@ use App\Http\Requests\User\newUser;
 use App\Http\Requests\User\updateUser;
 
 use App\Models\Admin\User;
+use App\Models\Admin\Avatar;
 use App\Models\Admin\Group;
+
 use Illuminate\Auth\Notifications\ResetPassword;
 
 class UserController extends Controller
@@ -91,7 +93,9 @@ class UserController extends Controller
             $groups = $groups->where('id', '!=', $developer_group->id);
         }
 
-        return view('Admin.users.edit', compact('user', 'groups'));
+        $avatars = Avatar::all();
+
+        return view('Admin.users.edit', compact('user', 'groups', 'avatars'));
     }
     public function update(updateUser $req)
     {

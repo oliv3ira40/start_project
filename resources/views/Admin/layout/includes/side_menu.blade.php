@@ -5,7 +5,7 @@
                     <!-- User -->
                     <div style="padding-top: 10px;" class="user-box pb-0">
                         <div class="user-img">
-                            <img src="{{ asset('admin/assets/images/users/avatar-1.jpg') }}" alt="user-img" title="{{ HelpAdmin::completName() }}" class="rounded-circle img-thumbnail img-responsive">
+                            <img src="{{ asset(\Auth::User()->Avatar->path) }}" alt="user-img" title="{{ HelpAdmin::completName() }}" class="rounded-circle img-thumbnail img-responsive">
                             <div class="user-status offline">
                                 <i style="color: {{ \Auth::User()->Group->tag_color }};" class="mdi mdi-adjust"></i>
                             </div>

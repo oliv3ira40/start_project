@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUsersToReportsTable extends Migration
+class AddAvatarsToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class AddUsersToReportsTable extends Migration
      */
     public function up()
     {
-        Schema::table('reports', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('avatar_id')->nullable();
             
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
+            $table->foreign('avatar_id')
+                ->references('id')->on('avatars');
         });
     }
 
@@ -29,7 +28,7 @@ class AddUsersToReportsTable extends Migration
      */
     public function down()
     {
-        Schema::table('reports', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
         });
     }

@@ -116,6 +116,8 @@
                         </div>
                     @endif
 
+                    <button type="button" class="btn btn-info btn-trans m-b-20" data-toggle="modal" data-target="#myModal">Alterar imagem de perfil</button>
+
                     <div class="form-row">
                         <div class="form-group col-md-12">
                             {!! Form::submit('Atualizar', ['class'=>'btn btn-xs btn-block btn-trans btn-info']) !!}
@@ -126,4 +128,33 @@
         </div>
     </div>
 
+
+    {{-- MODAL --}}
+    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        {!! Form::open(['url' => route('adm.avatars.change_user_avatar')]) !!}
+            {!! Form::hidden('user_id', $user->id) !!}
+            {!! Form::hidden('avatar_id', null, ['id'=>'input_avatar_id']) !!}
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Imagens de Perfil</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body row pt-0 pb-10" style="height: 400px; overflow: auto;">
+                        @foreach ($avatars as $avatar)
+                            <div class="col-6 col-sm-4 col-md-3 p-t-10">
+                                <img class="avatar" width="100%" src="{{ asset($avatar->path) }}" data-avatar_id="{{ $avatar->id }}">
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-warning btn-trans" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary btn-trans">Atualizar</button>
+                    </div>
+                </div>
+            </div>
+        {!! Form::close() !!}
+    </div>
+    {{-- MODAL --}}
+    
 @endsection

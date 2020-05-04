@@ -28,6 +28,7 @@ class User extends Authenticatable
         'date_of_birth',
         'password',
         'group_id',
+        'avatar_id',
         'deleted_at'
     ];
     
@@ -60,5 +61,10 @@ class User extends Authenticatable
     function UserSetting()
     {
         return $this->HasOne(UserSetting::class, 'user_id');
+    }
+
+    public function Avatar()
+    {
+        return $this->belongsTo(Avatar::class, 'avatar_id');
     }
 }

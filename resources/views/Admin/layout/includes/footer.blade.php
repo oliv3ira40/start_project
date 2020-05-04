@@ -139,6 +139,8 @@
         <script src="{{ asset('js/notifications.js') }}"></script>
         
         <script src="{{ asset('js/user_settings/btn_dark_mode.js') }}"></script>
+
+        <script src="{{ asset('js/avatars/change_avatar.js') }}"></script>
         {{-- My js --}}
 
     </body>

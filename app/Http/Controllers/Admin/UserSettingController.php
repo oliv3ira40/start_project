@@ -32,7 +32,7 @@ class UserSettingController extends Controller
             session()->flash('notification', 'success:Modo escuro ativado!');
         }
 
-        return redirect()->route(HelpAdmin::getPreviousRoute());
+        return redirect(url()->previous());
     }
 
 }

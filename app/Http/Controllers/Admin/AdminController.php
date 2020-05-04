@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Helpers\HelpAdmin;
 use App\Helpers\HelpMenuAdmin;
 
+use App\Models\Admin\Avatar;
 use App\Models\Admin\User;
 use App\Models\Admin\Group;
 use App\Models\Admin\CreatedPermission;

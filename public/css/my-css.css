@@ -97,3 +97,16 @@
     top: -5px;
     position: relative;
 }
+
+.avatar:hover
+{
+    border: solid 1px #a2a2a2;
+    border-radius: 10%;
+    cursor: pointer;
+}
+.select_avatar
+{
+    border: solid 3px #a2a2a2;
+    border-radius: 10%;
+    cursor: pointer;
+}

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProfessionalsTable extends Migration
+class CreateAvatarsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateProfessionalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('professionals', function (Blueprint $table) {
+        Schema::create('avatars', function (Blueprint $table) {
             $table->bigIncrements('id');
             
-            $table->string('cnpj', 20)->unique()->nullable();
-            
+            $table->string('name')->nullable();
+            $table->string('path');
+
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +30,6 @@ class CreateProfessionalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('professionals');
+        Schema::dropIfExists('avatars');
     }
 }
