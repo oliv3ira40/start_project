@@ -1,7 +1,6 @@
 @extends('auth.layout.layout')
 @section('title', 'Login')
 
-
 @section('content')
     <div class="m-t-20 card-box">
         <div class="text-center">
@@ -35,17 +34,6 @@
                             @endif
                         </label>
                         {!! Form::password('password', ['class'=>'form-control', 'id'=>'password']) !!}
-                    </div>
-                </div>
-
-                <div class="form-group m-b-5">
-                    <div class="col-xs-12">
-                        <div class="checkbox checkbox-custom pl-0">
-                            <input id="checkbox-signup" type="checkbox">
-                            <label for="checkbox-signup">
-                                Lembre de mim
-                            </label>
-                        </div>
                     </div>
                 </div>
 

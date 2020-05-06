@@ -5,7 +5,11 @@
                     <!-- User -->
                     <div style="padding-top: 10px;" class="user-box pb-0">
                         <div class="user-img">
-                            <img src="{{ asset(\Auth::User()->Avatar->path) }}" alt="user-img" title="{{ HelpAdmin::completName() }}" class="rounded-circle img-thumbnail img-responsive">
+                            @if (\Auth::User()->Avatar)
+                                <img src="{{ asset(\Auth::User()->Avatar->path) }}" alt="user-img" title="{{ HelpAdmin::completName() }}" class="rounded-circle img-thumbnail img-responsive">
+                            @else
+                                <img src="{{ asset('assets/icons/6.png') }}" alt="user-img" title="{{ HelpAdmin::completName() }}" class="rounded-circle img-thumbnail img-responsive">
+                            @endif
                             <div class="user-status offline">
                                 <i style="color: {{ \Auth::User()->Group->tag_color }};" class="mdi mdi-adjust"></i>
                             </div>
@@ -22,7 +26,7 @@
                         <ul class="list-inline">
                             <li class="list-inline-item">
                                 <a href="{{ route('adm.users.edit', \Auth::user()->id)}}" >
-                                    <i class="mdi mdi-settings"></i>
+                                    <i class="mdi mdi-settings"></i> Perfil
                                 </a>
                             </li>
                             <li class="list-inline-item">
@@ -31,7 +35,7 @@
 
                                 <a href="#" class="text-custom" onclick="event.preventDefault();
                                     document.getElementById('form_logout').submit();">
-                                    <i class="mdi mdi-power"></i>
+                                    <i class="mdi mdi-power"></i> Sair
                                 </a>
                             </li>
                         </ul>
