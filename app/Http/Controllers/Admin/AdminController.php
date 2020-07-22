@@ -35,13 +35,14 @@ class AdminController extends Controller
         if (HelpAdmin::IsUserDeveloper())
         {
             $data['user'] = \Auth::user();
+            $data['latest_users'] = User::orderBy('created_at', 'desc')->withTrashed()
+                ->limit(50)->get();
             $data['count_users'] = User::count();
             $data['count_groups'] = Group::count();
             $data['count_permissions'] = CreatedPermission::count();
 
-            // $data['groups'] = Group::orderBy('created_at')->paginate(10, ['*'], 'groups_page');
             return view('Admin.index', compact('data'));
-
+            
         } elseif (HelpAdmin::IsUserAdministrator())
         {
             return redirect()->route('adm.administrator.index');

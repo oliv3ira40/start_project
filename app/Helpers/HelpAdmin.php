@@ -147,4 +147,17 @@
 			}
 			return false;
 		}
+
+		public static function getAvatarUser($user = null)
+		{
+			if ($user == null) {
+				$user = \Auth::user();
+			}
+
+			if ($user->Avatar) {
+				return $user->Avatar->path;
+			} else {
+				return 'assets/icons/6.png';
+			}
+		}
 	}

@@ -66,6 +66,8 @@ Route::group(['middleware' => 'VerifyUserPermissions'], function(){
 
     Auth::routes();
 
+    Route::post('check_email', 'Auth\LoginController@checkEmail')->name('adm.check_email');
+    Route::get('bem-vindo-de-volta/{id}', 'Auth\LoginController@welcomeBack')->name('adm.welcome_back');
     // AUTH
         Route::get('adm/esqueci-a-senha', 'Admin\ResetPasswordController@resetPassword')->name('adm.reset_password');
         Route::post('adm/send-new-password', 'Admin\ResetPasswordController@sendNewPassword')->name('adm.send_new_password');

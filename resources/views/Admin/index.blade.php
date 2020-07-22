@@ -62,79 +62,82 @@
         </div>
     @endif
 
-    {{-- <div class="row">
-        <div class="col-lg-4 col-xs-12">
-            <a href="{{ route('adm.users.list') }}">
-                <div class="panel panel-default card-view pa-0">
-                    <div class="panel-wrapper collapse in">
-                        <div class="panel-body pa-0">
-                            <div class="sm-data-box">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-xs-8 text-center pl-0 pr-0 data-wrap-left">
-                                            <span class="txt-dark block counter"><span class="counter-anim">{{ $data['users']->total() }}</span></span>
-                                            <span class="weight-500 uppercase-font block font-13">Usuários</span>
-                                        </div>
-                                        <div class="col-xs-4 text-center  pl-0 pr-0 data-wrap-right">
-                                            <i class="icon-user-following data-right-rep-icon txt-light-grey"></i>
-                                        </div>
-                                    </div>	
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card-box table-responsive">
+                <h4 class="m-t-0 header-title">Últimos usuários registrados</h4>
+                <p class="text-muted font-14 m-b-30">
+                    Nesta lista sera exibido todos os usuários cadastrados, incluindo os excluídos
+                </p>
 
-        <div class="col-lg-4 col-xs-12">
-            <a href="{{ route('adm.groups.list') }}">
-                <div class="panel panel-default card-view pa-0">
-                    <div class="panel-wrapper collapse in">
-                        <div class="panel-body pa-0">
-                            <div class="sm-data-box">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-xs-8 text-center pl-0 pr-0 data-wrap-left">
-                                            <span class="txt-dark block counter"><span class="counter-anim">{{ $data['groups']->total() }}</span></span>
-                                            <span class="weight-500 uppercase-font block">Grupos</span>
-                                        </div>
-                                        <div class="col-xs-4 text-center  pl-0 pr-0 data-wrap-right">
-                                            <i class="icon-layers data-right-rep-icon txt-light-grey"></i>
-                                        </div>
-                                    </div>	
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+                <table class="datatable table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nome</th>
+                            <th>Grupos</th>
+                            <th>E-mail</th>
+                            <th>Status</th>
+                            <th>Data de cadastro</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($data['latest_users'] as $user)
+                            <tr>
+                                <td>
+                                    {{ $user->id }}
+                                </td>
+                                <td>
+                                    {{ HelpAdmin::completName($user) }}
+                                </td>
+                                <td class="font-bold">
+                                    <span style="background-color: {{ $user->Group->tag_color }};" class="badge badge-primary">
+                                        {{ $user->Group->name }}
+                                    </span>
+                                </td>
+                                <td>
+                                    {{ $user->email }}
+                                </td>
+                                <td>
+                                    @if ($user->trashed())
+                                        <span class="badge badge-danger">
+                                            Bloqueado
+                                        </span>
+                                    @else
+                                        <span class="badge badge-success">
+                                            Ativo
+                                        </span>
+                                    @endif
+                                </td>
+                                <td>
+                                    {{ $user->created_at->format('d/m/Y H:i') }}
+                                </td>
+                                <td>
+                                    @if ($user->trashed())
+                                        @if (in_array('adm.users.to_restore', HelpAdmin::permissionsUser()))
+                                            <a href="{{ route('adm.users.to_restore', $user->id) }}" class="my-btn btn btn-xs btn-trans btn-info">Restaurar</a>    
+                                        @endif
+                                        @if (in_array('adm.users.definitive_exclusion_alert', HelpAdmin::permissionsUser()))
+                                            <a href="{{ route('adm.users.definitive_exclusion_alert', $user->id) }}" class="my-btn btn btn-xs btn-trans btn-danger">Exclusão Definitiva</a>    
+                                        @endif    
+                                    @else
+                                        @if (in_array('adm.users.edit', HelpAdmin::permissionsUser()))
+                                            <a href="{{ route('adm.users.edit', $user->id) }}" class="my-btn btn btn-xs btn-trans btn-warning">Editar</a>    
+                                        @endif
 
-        <div class="col-lg-4 col-xs-12">
-            <a href="{{ route('adm.created_permissions.list') }}">
-                <div class="panel panel-default card-view pa-0">
-                    <div class="panel-wrapper collapse in">
-                        <div class="panel-body pa-0">
-                            <div class="sm-data-box">
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        <div class="col-xs-8 text-center pl-0 pr-0 data-wrap-left">
-                                        <span class="txt-dark block counter"><span class="counter-anim">{{ $data['created_permissions']->count() }}</span></span>
-                                            <span class="weight-500 uppercase-font block">Permissões criadas</span>
-                                        </div>
-                                        <div class="col-xs-4 text-center  pl-0 pr-0 data-wrap-right">
-                                            <i class="icon-list data-right-rep-icon txt-light-grey"></i>
-                                        </div>
-                                    </div>	
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                                        @if (in_array('adm.users.alert', HelpAdmin::permissionsUser()))
+                                            <a href="{{ route('adm.users.alert', $user->id) }}" class="my-btn btn btn-xs btn-trans btn-danger">Excluir</a>    
+                                        @endif
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div> --}}
+    </div>
 
     {{-- 
     <div class="row">
