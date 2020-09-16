@@ -63,24 +63,24 @@
         {
             $application_appearance_setting = ApplicationAppearanceSetting::select('logo_for_white_background')->first();
             
-            return $application_appearance_setting->logo_for_white_background;
+            return $application_appearance_setting;
         }
         public static function getLogoBlackBackground()
         {
             $application_appearance_setting = ApplicationAppearanceSetting::select('logo_for_black_background')->first();
             
-            return $application_appearance_setting->logo_for_black_background;
+            return $application_appearance_setting;
         }
         public static function getReducedLogo()
         {
             $application_appearance_setting = ApplicationAppearanceSetting::select('reduced_logo')->first();
             
-            return $application_appearance_setting->reduced_logo;
+            return $application_appearance_setting;
         }
         public static function getFavicon()
         {
             $application_appearance_setting = ApplicationAppearanceSetting::select('favicon')->first();
             
-            return $application_appearance_setting->favicon;
+            return $application_appearance_setting;
         }
 	}

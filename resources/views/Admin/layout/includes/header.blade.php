@@ -7,7 +7,7 @@
         <meta name="author" content="StartProject">
 
         @if (HelpAppearanceSetting::getFavicon())
-            <link rel="shortcut icon" href="{{ asset(HelpAdmin::getStorageUrl().HelpAppearanceSetting::getFavicon()) }}">
+            <link rel="shortcut icon" href="{{ asset(HelpAdmin::getStorageUrl().HelpAppearanceSetting::getFavicon()->favicon) }}">
         @else
             <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
         @endif
@@ -70,7 +70,7 @@
                 <div class="topbar-left">
                     <a href="{{ route('adm.index') }}" class="logo">
                         @if (HelpAppearanceSetting::getLogoWhiteBackground())
-                            <img class="logo" src="{{ asset(HelpAdmin::getStorageUrl().HelpAppearanceSetting::getLogoWhiteBackground()) }}" alt="logomarca">
+                            <img class="logo" src="{{ asset(HelpAdmin::getStorageUrl().HelpAppearanceSetting::getLogoWhiteBackground()->logo_for_white_background) }}" alt="logomarca">
                         @else
                             <span>
                                 Start<span>Project</span>

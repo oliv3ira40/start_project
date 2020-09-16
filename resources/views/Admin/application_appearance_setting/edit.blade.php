@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card-box">
-                <h4 class="m-t-0 header-title">Editando usuário</h4>
+                <h4 class="m-t-0 header-title">Editando Aparência</h4>
                 {!! Form::open([
                     'url'=>route('adm.application_appearance_settings.update'),
                     'files'=>'true'

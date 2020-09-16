@@ -237,6 +237,7 @@ return [
         'HelpAdmin'             =>  App\Helpers\HelpAdmin::class,
         'HelpMenuAdmin'         =>  App\Helpers\HelpMenuAdmin::class,
         'HelpAppearanceSetting' =>  App\Helpers\HelpAppearanceSetting::class,
+        'HelpApplicationSetting' =>  App\Helpers\HelpApplicationSetting::class,
     ],
 
 ];

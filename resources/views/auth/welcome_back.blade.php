@@ -1,5 +1,10 @@
 @extends('auth.layout.layout')
-@section('title', 'NTSec - Bem vindo de volta')
+@section('title')
+    @if (HelpApplicationSetting::getAppName())
+        {{ HelpApplicationSetting::getAppName()->app_name }}
+    @endif
+    - Bem vindo de volta
+@stop
 
 @section('content')
 

@@ -16,6 +16,9 @@ class CreateApplicationSettingsTable extends Migration
         Schema::create('application_settings', function (Blueprint $table) {
             $table->bigIncrements('id');
 
+            $table->string('app_name', 200)->nullable();
+            $table->string('copyright', 300)->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

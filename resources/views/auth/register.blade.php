@@ -1,6 +1,10 @@
 @extends('auth.layout.layout')
-@section('title', 'Registre-se')
-
+@section('title')
+    @if (HelpApplicationSetting::getAppName())
+        {{ HelpApplicationSetting::getAppName()->app_name }}
+    @endif
+    - Registre-se
+@stop 
 
 @section('content')
 

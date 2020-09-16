@@ -4,7 +4,11 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2020 © StartProject
+                    @if (HelpApplicationSetting::getAppCopyright())    
+                        {{ HelpApplicationSetting::getAppCopyright()->copyright }}
+                    @else
+                        © StartProject
+                    @endif
                 </footer>
                 @php
                     $flash = session()->all();
@@ -65,6 +69,16 @@
                                     <i class="mdi mdi-settings font-16"></i>
                                     <span>
                                         Config de aparência
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
+                        @if (in_array('adm.application_settings.edit', HelpAdmin::permissionsUser()))
+                            <li class="list-group-item">
+                                <a href="{{ route('adm.application_settings.edit') }}" class="user-list-item text-black">
+                                    <i class="mdi mdi-settings font-16"></i>
+                                    <span>
+                                        Config da aplicação
                                     </span>
                                 </a>
                             </li>

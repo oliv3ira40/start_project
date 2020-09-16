@@ -1,10 +1,20 @@
 @extends('auth.layout.layout')
-@section('title', 'StartProject - Login')
+@section('title')
+    @if (HelpApplicationSetting::getAppName())
+        {{ HelpApplicationSetting::getAppName()->app_name }}
+    @endif
+    - Login
+@stop
 
 @section('content')
     <div class="m-t-20 card-box">
         <div class="text-center">
-            <h4 class="text-uppercase mb-10">StartProject - Login</h4>
+            <h4 class="text-uppercase mb-10">
+                @if (HelpApplicationSetting::getAppName())
+                    {{ HelpApplicationSetting::getAppName()->app_name }}
+                @endif
+                - Login
+            </h4>
         </div>
         <div class="p-20 p-t-10 p-b-10">
             {!! Form::open(['url'=>route('adm.check_email'), 'class'=>'form-horizontal mt-0']) !!}

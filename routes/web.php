@@ -67,6 +67,12 @@ Route::group(['middleware' => 'VerifyUserPermissions'], function(){
             Route::post('adm/appli_appear_sett/update', 'Config\ApplicationAppearanceSettingController@update')
                 ->name('adm.application_appearance_settings.update');
         // ApplicationAppearanceSetting
+        // ApplicationSettingController
+            Route::get('adm/config-apli/editar', 'Config\ApplicationSettingController@edit')
+                ->name('adm.application_settings.edit');
+            Route::post('adm/appli_sett/update', 'Config\ApplicationSettingController@update')
+                ->name('adm.application_settings.update');
+        // ApplicationSettingController
 
     });	/*Fecha grupo de verificação de permissões*/
         
