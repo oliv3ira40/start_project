@@ -60,6 +60,14 @@ Route::group(['middleware' => 'VerifyUserPermissions'], function(){
             Route::post('/avatars/change_user_avatar', 'Admin\AvatarController@changeUserAvatar')->name('adm.avatars.change_user_avatar');
         // Avatar
         
+
+        // ApplicationAppearanceSetting
+            Route::get('adm/config-aparen-apli/editar', 'Config\ApplicationAppearanceSettingController@edit')
+                ->name('adm.application_appearance_settings.edit');
+            Route::post('adm/appli_appear_sett/update', 'Config\ApplicationAppearanceSettingController@update')
+                ->name('adm.application_appearance_settings.update');
+        // ApplicationAppearanceSetting
+
     });	/*Fecha grupo de verificação de permissões*/
         
     Route::get('/sem-permissao', 'Admin\AdminController@withoutPermission')->name('adm.withoutPermission');

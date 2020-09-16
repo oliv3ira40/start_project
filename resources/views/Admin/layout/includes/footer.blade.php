@@ -58,6 +58,17 @@
                                 </div>
                             </a>
                         </li>
+                        
+                        @if (in_array('adm.application_appearance_settings.edit', HelpAdmin::permissionsUser()))
+                            <li class="list-group-item">
+                                <a href="{{ route('adm.application_appearance_settings.edit') }}" class="user-list-item text-black">
+                                    <i class="mdi mdi-settings font-16"></i>
+                                    <span>
+                                        Config de aparência
+                                    </span>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -76,6 +87,24 @@
         <script src="{{ asset('admin/assets/js/jquery.nicescroll.js') }}"></script>
         <script src="{{ asset('admin/assets/js/jquery.slimscroll.js') }}"></script>
         <script src="{{ asset('admin/assets/js/jquery.scrollTo.min.js') }}"></script>
+
+        @if (isset($data['required_files']) AND in_array('dropify', $data['required_files']))
+            <!-- file uploads js -->
+            <script src="{{ asset('admin/assets/plugins/fileuploads/js/dropify.min.js') }}"></script>
+            <script type="text/javascript">
+                $('.dropify').dropify({
+                    messages: {
+                        'default': 'Arraste e solte um arquivo aqui ou clique',
+                        'replace': 'Arraste e solte ou clique para substituir',
+                        'remove': 'Remover',
+                        'error': 'Ops, algo errado foi acrescentado.'
+                    },
+                    error: {
+                        'fileSize': 'O tamanho do arquivo é muito grande'
+                    }
+                });
+            </script>
+        @endif
 
         <!--Morris Chart-->
         <script src="{{ asset('admin/assets/plugins/morris/morris.min.js') }}"></script>
@@ -129,19 +158,20 @@
         <script src="{{ asset('admin/assets/js/jquery.app.js') }}"></script>
 
         {{-- My js --}}
-        <script src="{{ asset('js/plugins/data_tables.js') }}"></script>
-        
-        <script src="{{ asset('js/utilities/masks.js') }}"></script>
-        <script src="{{ asset('js/utilities/via_cep.js') }}"></script>
-        
-        <script src="{{ asset('js/date_picker.js') }}"></script>
-        <script src="{{ asset('js/div_update_password.js') }}"></script>
-        <script src="{{ asset('js/form_advanced.js') }}"></script>
-        <script src="{{ asset('js/notifications.js') }}"></script>
-        
-        <script src="{{ asset('js/user_settings/btn_dark_mode.js') }}"></script>
+            <script src="{{ asset('js/plugins/data_tables.js') }}"></script>
+            
+            <script src="{{ asset('js/utilities/masks.js') }}"></script>
+            <script src="{{ asset('js/utilities/via_cep.js') }}"></script>
+            <script src="{{ asset('js/utilities/my_data_ranges.js') }}"></script>
+            
+            <script src="{{ asset('js/date_picker.js') }}"></script>
+            <script src="{{ asset('js/div_update_password.js') }}"></script>
+            <script src="{{ asset('js/form_advanced.js') }}"></script>
+            <script src="{{ asset('js/notifications.js') }}"></script>
+            
+            <script src="{{ asset('js/user_settings/btn_dark_mode.js') }}"></script>
 
-        <script src="{{ asset('js/avatars/change_avatar.js') }}"></script>
+            <script src="{{ asset('js/avatars/change_avatar.js') }}"></script>
         {{-- My js --}}
 
     </body>

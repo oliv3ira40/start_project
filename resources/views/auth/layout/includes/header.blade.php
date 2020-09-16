@@ -6,7 +6,11 @@
         <meta name="description" content="StartProject">
         <meta name="author" content="StartProject">
 
-        <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
+        @if (HelpAppearanceSetting::getFavicon())
+            <link rel="shortcut icon" href="{{ asset(HelpAdmin::getStorageUrl().HelpAppearanceSetting::getFavicon()) }}">
+        @else
+            <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
+        @endif
 
         <title>@yield('title')</title>
 
@@ -32,9 +36,13 @@
         <div class="wrapper-page">
             <div class="text-center">
                 <a href="{{ route('adm.index') }}" class="logo">
-					<span>
-						Start<span>Project</span>
-					</span>
+                    @if (HelpAppearanceSetting::getLogoWhiteBackground())
+                        <img class="logo" src="{{ asset(HelpAdmin::getStorageUrl().HelpAppearanceSetting::getLogoWhiteBackground()) }}" alt="logomarca">
+                    @else
+                        <span>
+                            Start<span>Project</span>
+                        </span>
+                    @endif
 				</a>
                 {{-- <h5 class="text-muted m-t-0 font-600">Responsive Admin Dashboard</h5> --}}
 			</div>

@@ -6,7 +6,11 @@
         <meta name="description" content="StartProject">
         <meta name="author" content="StartProject">
 
-        <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
+        @if (HelpAppearanceSetting::getFavicon())
+            <link rel="shortcut icon" href="{{ asset(HelpAdmin::getStorageUrl().HelpAppearanceSetting::getFavicon()) }}">
+        @else
+            <link rel="shortcut icon" href="{{ asset('admin/assets/images/favicon.ico') }}">
+        @endif
 
         <title>@yield('title')</title>
 
@@ -31,6 +35,11 @@
 
         <!-- Notification css (Toastr) -->
         <link href="{{ asset('admin/assets/plugins/toastr/toastr.min.css') }}" rel="stylesheet" type="text/css" />
+
+        @if (isset($data['required_files']) AND in_array('dropify', $data['required_files']))
+            <!-- form Uploads -->
+            <link href="{{ asset('admin/assets/plugins/fileuploads/css/dropify.min.css') }}" rel="stylesheet" type="text/css" />
+        @endif
 
         <!-- App css -->
         <link href="{{ asset('admin/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
@@ -60,10 +69,14 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="{{ route('adm.index') }}" class="logo">
-                        <span>
-                            Start<span>Project</span>
-                        </span>
-                        <i class="mdi mdi-layers"></i>
+                        @if (HelpAppearanceSetting::getLogoWhiteBackground())
+                            <img class="logo" src="{{ asset(HelpAdmin::getStorageUrl().HelpAppearanceSetting::getLogoWhiteBackground()) }}" alt="logomarca">
+                        @else
+                            <span>
+                                Start<span>Project</span>
+                            </span>
+                            <i class="mdi mdi-layers"></i>
+                        @endif
                     </a>
                 </div>
 
